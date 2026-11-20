@@ -613,3 +613,4 @@
 {"ts":"2026-11-20T07:37:24.9262764Z","profile":"THZ_SPLIT_RING_RESONATOR_4","sha16":"d4bea25e4d82bab6","n_index":-1.042,"q_factor":5981.71,"bend":7.998877,"status":"JACOBIAN_CERTIFIED"}
 {"ts":"2026-11-20T07:42:14.6300170Z","profile":"PHOTONIC_CRYSTAL_HEX","sha16":"398ffa5c5e19ed30","n_index":3.25634,"q_factor":1931.56,"bend":8.095726,"status":"AUGMENTED_CLAMPED"}
 {"ts":"2026-11-20T07:50:36.4786550Z","profile":"PHOTONIC_CRYSTAL_HEX","sha16":"398ffa5c5e19ed30","n_index":3.25634,"q_factor":1931.56,"bend":8.095726,"status":"AUGMENTED_CLAMPED"}
+{"ts":"2026-11-20T08:50:38.2505905Z","profile":"PHOTONIC_CRYSTAL_HEX","sha16":"398ffa5c5e19ed30","n_index":3.25634,"q_factor":1931.56,"bend":8.095726,"status":"AUGMENTED_CLAMPED"}
