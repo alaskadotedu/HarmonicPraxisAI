@@ -1,0 +1,470 @@
+[
+    {
+        "ApplicationEngine":  "HARMONIC_MATERIAL_ENGINE_v8.0",
+        "MaterialProfile":  "PHOTONIC_CRYSTAL_HEX",
+        "LatticeConstantNm":  420,
+        "ConstitutiveTensor":  {
+                                   "PermittivityEff":  11.63676,
+                                   "PermeabilityEff":  0.91123,
+                                   "RefractiveIndex":  3.25634,
+                                   "PhotonicBandgapThz":  300.22598,
+                                   "ResonanceQFactor":  1931.56,
+                                   "MetamaterialClass":  "DIELECTRIC_HIGH_Q_LATTICE"
+                               },
+        "JacobianCore":  {
+                             "EvalId":  1,
+                             "TimestampUtc":  "2026-11-20T01:42:54.6473229Z",
+                             "LatencyMs":  399.6714,
+                             "StateHash16":  "398ffa5c5e19ed30",
+                             "FullStateSha256":  "398ffa5c5e19ed30db7ef932f32d6e63e40cc041e1d0f3fecbdb2858689127ab",
+                             "NewtonIterations":  12,
+                             "ControlVectorX":  {
+                                                    "Psi":  -1.0219,
+                                                    "Gain":  0.6959,
+                                                    "Purity":  0.1123,
+                                                    "Alpha":  0
+                                                },
+                             "ObservableY":  {
+                                                 "CouplingGain":  0.695901,
+                                                 "FrequencyThz":  566.483694,
+                                                 "WatermarkWt":  0.823273,
+                                                 "RegulatedBend":  8.095726
+                                             },
+                             "JacobianTensor":  {
+                                                    "Matrix4x4":  [
+                                                                      [
+                                                                          0,
+                                                                          1,
+                                                                          0,
+                                                                          0.00897
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          4.28168,
+                                                                          0,
+                                                                          0.00138
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          -0.00193,
+                                                                          0.02915,
+                                                                          0.00034
+                                                                      ],
+                                                                      [
+                                                                          -4.21713,
+                                                                          7.4366,
+                                                                          -4.28393,
+                                                                          -0.00373
+                                                                      ]
+                                                                  ],
+                                                    "Inverse4x4":  [
+                                                                       [
+                                                                           1.1909,
+                                                                           0.11801,
+                                                                           -34.84367,
+                                                                           -0.23713
+                                                                       ],
+                                                                       [
+                                                                           -0.03727,
+                                                                           0.24226,
+                                                                           0,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           -1.33755,
+                                                                           0.32785,
+                                                                           34.30033,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           115.58441,
+                                                                           -26.99511,
+                                                                           0,
+                                                                           0
+                                                                       ]
+                                                                   ],
+                                                    "Singular":  false,
+                                                    "Determinant":  0.004554,
+                                                    "Trace":  4.307108,
+                                                    "FrobeniusNorm":  10.524872,
+                                                    "SpectralRadius":  4.283753,
+                                                    "ConditionNumber":  1351.2284,
+                                                    "Contractive":  false
+                                                },
+                             "Polygonal":  {
+                                               "Sides":  6,
+                                               "SectorAngleRad":  1.047198,
+                                               "SnappedVertexRad":  -1.047198,
+                                               "ResidualRad":  0.025278,
+                                               "Coherence":  0.997126
+                                           },
+                             "MassAugmentation":  {
+                                                      "ColdMass":  0.042876,
+                                                      "LowMass":  1.048125,
+                                                      "InvariantSatisfied":  true,
+                                                      "AugmentationRatio":  0.040907
+                                                  },
+                             "Ambient6D":  [
+                                               -0.233649,
+                                               -0.969365,
+                                               -0.122568,
+                                               -0.255004,
+                                               -0.546354,
+                                               -0.021565
+                                           ],
+                             "BreachDetected":  true,
+                             "Status":  "AUGMENTED_CLAMPED"
+                         }
+    },
+    {
+        "ApplicationEngine":  "HARMONIC_MATERIAL_ENGINE_v8.0",
+        "MaterialProfile":  "QUASICRYSTAL_PHI_12",
+        "LatticeConstantNm":  618,
+        "ConstitutiveTensor":  {
+                                   "PermittivityEff":  6.58002,
+                                   "PermeabilityEff":  0.94,
+                                   "RefractiveIndex":  2.48701,
+                                   "PhotonicBandgapThz":  28.40377,
+                                   "ResonanceQFactor":  953.99,
+                                   "MetamaterialClass":  "DIELECTRIC_HIGH_Q_LATTICE"
+                               },
+        "JacobianCore":  {
+                             "EvalId":  2,
+                             "TimestampUtc":  "2026-11-20T01:42:54.9756261Z",
+                             "LatencyMs":  159.5317,
+                             "StateHash16":  "814fb86cd7fcc1d0",
+                             "FullStateSha256":  "814fb86cd7fcc1d0ae91c59facbad29eaaf334cc6a8a391257d93bb96c6566ac",
+                             "NewtonIterations":  12,
+                             "ControlVectorX":  {
+                                                    "Psi":  1.8182,
+                                                    "Gain":  0.7257,
+                                                    "Purity":  1,
+                                                    "Alpha":  0
+                                                },
+                             "ObservableY":  {
+                                                 "CouplingGain":  0.725731,
+                                                 "FrequencyThz":  566.611444,
+                                                 "WatermarkWt":  0.74865,
+                                                 "RegulatedBend":  8.015797
+                                             },
+                             "JacobianTensor":  {
+                                                    "Matrix4x4":  [
+                                                                      [
+                                                                          0,
+                                                                          1,
+                                                                          0,
+                                                                          0.00078
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          4.28361,
+                                                                          0,
+                                                                          0.01209
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          -0.0166,
+                                                                          0.02865,
+                                                                          0.003
+                                                                      ],
+                                                                      [
+                                                                          6.30554,
+                                                                          7.57728,
+                                                                          -6.51381,
+                                                                          -0.0323
+                                                                      ]
+                                                                  ],
+                                                    "Inverse4x4":  [
+                                                                       [
+                                                                           49.55656,
+                                                                           -11.70966,
+                                                                           36.0565,
+                                                                           0.15859
+                                                                       ],
+                                                                       [
+                                                                           1.37974,
+                                                                           -0.08865,
+                                                                           0,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           52.00142,
+                                                                           -12.00435,
+                                                                           34.90365,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           -488.98341,
+                                                                           114.15216,
+                                                                           0,
+                                                                           0
+                                                                       ]
+                                                                   ],
+                                                    "Singular":  false,
+                                                    "Determinant":  0.001583,
+                                                    "Trace":  4.279966,
+                                                    "FrobeniusNorm":  12.607796,
+                                                    "SpectralRadius":  4.308833,
+                                                    "ConditionNumber":  6429.9386,
+                                                    "Contractive":  false
+                                                },
+                             "Polygonal":  {
+                                               "Sides":  12,
+                                               "SectorAngleRad":  0.523599,
+                                               "SnappedVertexRad":  1.570796,
+                                               "ResidualRad":  0.2474,
+                                               "Coherence":  0.086288
+                                           },
+                             "MassAugmentation":  {
+                                                      "ColdMass":  0.381966,
+                                                      "LowMass":  1.066561,
+                                                      "InvariantSatisfied":  true,
+                                                      "AugmentationRatio":  0.358129
+                                                  },
+                             "Ambient6D":  [
+                                               0.044215,
+                                               0.074099,
+                                               -0.245562,
+                                               -0.140533,
+                                               -0.384663,
+                                               0.239867
+                                           ],
+                             "BreachDetected":  false,
+                             "Status":  "JACOBIAN_CERTIFIED"
+                         }
+    },
+    {
+        "ApplicationEngine":  "HARMONIC_MATERIAL_ENGINE_v8.0",
+        "MaterialProfile":  "SUPERCONDUCTING_METAMATERIAL",
+        "LatticeConstantNm":  280,
+        "ConstitutiveTensor":  {
+                                   "PermittivityEff":  -2.34393,
+                                   "PermeabilityEff":  0.33486,
+                                   "RefractiveIndex":  -0.88594,
+                                   "PhotonicBandgapThz":  320.2617,
+                                   "ResonanceQFactor":  6174.67,
+                                   "MetamaterialClass":  "NEGATIVE_INDEX_LEFT_HANDED"
+                               },
+        "JacobianCore":  {
+                             "EvalId":  3,
+                             "TimestampUtc":  "2026-11-20T01:42:55.2271721Z",
+                             "LatencyMs":  153.2689,
+                             "StateHash16":  "d4bea25e4d82bab6",
+                             "FullStateSha256":  "d4bea25e4d82bab6992ff969a51985a64f87ad48bd25300ef3a4a801c72497b3",
+                             "NewtonIterations":  12,
+                             "ControlVectorX":  {
+                                                    "Psi":  1.4165,
+                                                    "Gain":  0.7116,
+                                                    "Purity":  0.5675,
+                                                    "Alpha":  0.4047
+                                                },
+                             "ObservableY":  {
+                                                 "CouplingGain":  0.718578,
+                                                 "FrequencyThz":  566.556679,
+                                                 "WatermarkWt":  0.73777,
+                                                 "RegulatedBend":  7.998877
+                                             },
+                             "JacobianTensor":  {
+                                                    "Matrix4x4":  [
+                                                                      [
+                                                                          0.00443,
+                                                                          1,
+                                                                          0,
+                                                                          0.01715
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          4.27943,
+                                                                          0.00986,
+                                                                          0.01383
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          -0.00958,
+                                                                          0.03131,
+                                                                          0.0034
+                                                                      ],
+                                                                      [
+                                                                          5.48173,
+                                                                          7.45662,
+                                                                          -5.15229,
+                                                                          -0.03695
+                                                                      ]
+                                                                  ],
+                                                    "Inverse4x4":  [
+                                                                       [
+                                                                           -6.70384,
+                                                                           1.30748,
+                                                                           30.49383,
+                                                                           0.18784
+                                                                       ],
+                                                                       [
+                                                                           -0.21648,
+                                                                           0.28382,
+                                                                           -0.06064,
+                                                                           0.00017
+                                                                       ],
+                                                                       [
+                                                                           -7.96683,
+                                                                           1.92293,
+                                                                           32.38691,
+                                                                           0.00643
+                                                                       ],
+                                                                       [
+                                                                           72.66366,
+                                                                           -16.88725,
+                                                                           -4.33255,
+                                                                           -0.05866
+                                                                       ]
+                                                                   ],
+                                                    "Singular":  false,
+                                                    "Determinant":  -0.010117,
+                                                    "Trace":  4.278222,
+                                                    "FrobeniusNorm":  11.46792,
+                                                    "SpectralRadius":  4.307367,
+                                                    "ConditionNumber":  1004.7843,
+                                                    "Contractive":  false
+                                                },
+                             "Polygonal":  {
+                                               "Sides":  4,
+                                               "SectorAngleRad":  1.570796,
+                                               "SnappedVertexRad":  1.570796,
+                                               "ResidualRad":  -0.154319,
+                                               "Coherence":  0.952748
+                                           },
+                             "MassAugmentation":  {
+                                                      "ColdMass":  0.21675,
+                                                      "LowMass":  1.057851,
+                                                      "InvariantSatisfied":  true,
+                                                      "AugmentationRatio":  0.204897
+                                                  },
+                             "Ambient6D":  [
+                                               0.769241,
+                                               0.562138,
+                                               -0.271626,
+                                               0.079179,
+                                               0.241442,
+                                               -0.152485
+                                           ],
+                             "BreachDetected":  false,
+                             "Status":  "JACOBIAN_CERTIFIED"
+                         }
+    },
+    {
+        "ApplicationEngine":  "HARMONIC_MATERIAL_ENGINE_v8.0",
+        "MaterialProfile":  "TOPO_INSULATOR_OCT",
+        "LatticeConstantNm":  510,
+        "ConstitutiveTensor":  {
+                                   "PermittivityEff":  15.16789,
+                                   "PermeabilityEff":  1.02197,
+                                   "RefractiveIndex":  3.93715,
+                                   "PhotonicBandgapThz":  190.52661,
+                                   "ResonanceQFactor":  276.05,
+                                   "MetamaterialClass":  "DIELECTRIC_HIGH_Q_LATTICE"
+                               },
+        "JacobianCore":  {
+                             "EvalId":  4,
+                             "TimestampUtc":  "2026-11-20T01:42:55.5069380Z",
+                             "LatencyMs":  194.3497,
+                             "StateHash16":  "9b5fe4800ea6e3d5",
+                             "FullStateSha256":  "9b5fe4800ea6e3d5b580200a643206a01a80d2a6a8d07e7ef71b115458358aef",
+                             "NewtonIterations":  12,
+                             "ControlVectorX":  {
+                                                    "Psi":  1.0178,
+                                                    "Gain":  0.6977,
+                                                    "Purity":  0.1247,
+                                                    "Alpha":  0
+                                                },
+                             "ObservableY":  {
+                                                 "CouplingGain":  0.697738,
+                                                 "FrequencyThz":  566.491557,
+                                                 "WatermarkWt":  0.823631,
+                                                 "RegulatedBend":  8.03904
+                                             },
+                             "JacobianTensor":  {
+                                                    "Matrix4x4":  [
+                                                                      [
+                                                                          0,
+                                                                          1,
+                                                                          0,
+                                                                          0.00538
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          4.2818,
+                                                                          0,
+                                                                          0.00153
+                                                                      ],
+                                                                      [
+                                                                          0,
+                                                                          -0.00214,
+                                                                          0.02912,
+                                                                          0.00037
+                                                                      ],
+                                                                      [
+                                                                          4.17191,
+                                                                          7.37763,
+                                                                          -4.27317,
+                                                                          -0.0041
+                                                                      ]
+                                                                  ],
+                                                    "Inverse4x4":  [
+                                                                       [
+                                                                           -2.30199,
+                                                                           0.14218,
+                                                                           35.17091,
+                                                                           0.2397
+                                                                       ],
+                                                                       [
+                                                                           -0.07121,
+                                                                           0.25018,
+                                                                           0,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           -2.56157,
+                                                                           0.6154,
+                                                                           34.33747,
+                                                                           0
+                                                                       ],
+                                                                       [
+                                                                           199.03183,
+                                                                           -46.48324,
+                                                                           0,
+                                                                           0
+                                                                       ]
+                                                                   ],
+                                                    "Singular":  false,
+                                                    "Determinant":  -0.002614,
+                                                    "Trace":  4.306816,
+                                                    "FrobeniusNorm":  10.460824,
+                                                    "SpectralRadius":  4.284785,
+                                                    "ConditionNumber":  2199.332,
+                                                    "Contractive":  false
+                                                },
+                             "Polygonal":  {
+                                               "Sides":  8,
+                                               "SectorAngleRad":  0.785398,
+                                               "SnappedVertexRad":  0.785398,
+                                               "ResidualRad":  0.232445,
+                                               "Coherence":  0.59801
+                                           },
+                             "MassAugmentation":  {
+                                                      "ColdMass":  0.047625,
+                                                      "LowMass":  1.04926,
+                                                      "InvariantSatisfied":  true,
+                                                      "AugmentationRatio":  0.045389
+                                                  },
+                             "Ambient6D":  [
+                                               0.581927,
+                                               0.137756,
+                                               -0.133126,
+                                               0.249655,
+                                               0.412493,
+                                               0.197806
+                                           ],
+                             "BreachDetected":  true,
+                             "Status":  "AUGMENTED_CLAMPED"
+                         }
+    }
+]

@@ -1,0 +1,5 @@
+node_modules/
+data/*.db*
+*.jsonl
+harmonic_api_key.txt
+*.zip

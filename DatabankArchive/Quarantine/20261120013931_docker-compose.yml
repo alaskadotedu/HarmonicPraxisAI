@@ -1,0 +1,14 @@
+services:
+  harmonic-praxis-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: harmonic_praxis_autonomics_hub
+    ports:
+      - "8110:8110"
+    volumes:
+      - ./harmonic_praxis_vault.db:/app/harmonic_praxis_vault.db
+      - ./middleware_audit.jsonl:/app/middleware_audit.jsonl
+      - ./reproducibility_lock.json:/app/reproducibility_lock.json
+      - ./harmonic_surrogate_v4_3.json:/app/harmonic_surrogate_v4_3.json
+    restart: unless-stopped

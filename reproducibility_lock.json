@@ -1,0 +1,10 @@
+{
+    "workflow_completed_utc":  "2026-11-20T01:40:17.5086789Z",
+    "total_evaluations":  48,
+    "certified_count":  34,
+    "contractive_count":  0,
+    "breach_count":  14,
+    "surrogate_sha16":  "9c2ed6f423c4d8f5",
+    "terminal_state_sha256":  "20ee71898f4ee061e63526d69589d65b6d3eeaea462b63152864a2e9446d3a0a",
+    "csv_artifact":  "C:\\Users\\dmjal\\HarmonicPraxisAI\\jacobian_automation_matrix.csv"
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HarmonicPraxisAI | Telemetry & Integrity Command</title>
+<style>
+  :root { --bg:#0b0f17; --card:#131a26; --border:#1f2a3d; --accent:#38bdf8; --ok:#22c55e; --warn:#f59e0b; --text:#e2e8f0; --muted:#94a3b8; }
+  * { box-sizing:border-box; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  body { margin:0; background:var(--bg); color:var(--text); padding:20px; }
+  header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:20px; }
+  h1 { margin:0; font-size:1.35rem; color:var(--accent); }
+  .controls button { background:var(--accent); color:#0b0f17; border:none; padding:8px 14px; border-radius:6px; font-weight:600; cursor:pointer; margin-left:8px; }
+  .controls button.sec { background:var(--card); color:var(--text); border:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:20px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px; }
+  .label { font-size:0.78rem; color:var(--muted); text-transform:uppercase; }
+  .val { font-size:1.6rem; font-weight:700; margin-top:4px; }
+  .panel { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:20px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+  th, td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); }
+  .badge { padding:3px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; background:rgba(34,197,94,0.15); color:var(--ok); }
+  .badge.warn { background:rgba(245,158,11,0.15); color:var(--warn); }
+  svg { width:100%; height:140px; display:block; }
+</style>
+</head>
+<body>
+<header>
+  <div><h1>HARMONIC PRAXIS AI // TELEMETRY &amp; INTEGRITY STACK</h1><small style="color:var(--muted)" id="ts">Initializing...</small></div>
+  <div class="controls"><button onclick="runAudit()">Run Live Audit</button><button class="sec" onclick="loadData()">Refresh</button></div>
+</header>
+<div class="grid">
+  <div class="card"><div class="label">Host Free RAM</div><div class="val" id="ram">--%</div></div>
+  <div class="card"><div class="label">Active Processes</div><div class="val" id="procs">--</div></div>
+  <div class="card"><div class="label">Audited Artifacts</div><div class="val" id="arts">--</div></div>
+  <div class="card"><div class="label">Amalgamated Rows</div><div class="val" id="rows">--</div></div>
+</div>
+<div class="panel"><div class="label" style="margin-bottom:8px">Artifact Phi-Decay Profile</div><svg id="chart" viewBox="0 0 800 140"></svg></div>
+<div class="panel"><div class="label" style="margin-bottom:8px">Cryptographic Integrity &amp; Remediation Matrix</div>
+<table><thead><tr><th>Seq</th><th>Artifact</th><th>Size (KB)</th><th>SHA-256 Prefix</th><th>Phi Weight</th><th>Risk Score</th><th>Action</th></tr></thead><tbody id="tbody"></tbody></table></div>
+<script>
+async function loadData(){
+  const r = await fetch('/api/dashboard'); const d = await r.json();
+  document.getElementById('ts').textContent = 'Last Sync UTC: ' + d.TimestampUtc;
+  document.getElementById('ram').textContent = d.FreeMemPct + '%';
+  document.getElementById('procs').textContent = d.ProcCount;
+  document.getElementById('arts').textContent = d.Matrix.length;
+  document.getElementById('rows').textContent = d.TotalDatumRows;
+  const tb = document.getElementById('tbody'); tb.innerHTML = '';
+  const pts = [];
+  d.Matrix.forEach((m, i) => {
+    const isWarn = m.RemediationAction !== 'VERIFIED_NOMINAL';
+    tb.innerHTML += `<tr><td>${m.Seq}</td><td><b>${m.Artifact}</b></td><td>${m.SizeKB}</td><td><code>${m.Sha256Prefix}</code></td><td>${m.PhiWeight}</td><td>${m.RiskScore}</td><td><span class="badge ${isWarn?'warn':''}">${m.RemediationAction}</span></td></tr>`;
+    const x = 20 + (i * (760 / Math.max(1, d.Matrix.length - 1)));
+    const y = 120 - (Math.min(1, parseFloat(m.PhiWeight || 0)) * 100);
+    pts.push(`${x},${y}`);
+  });
+  document.getElementById('chart').innerHTML = `<polyline fill="none" stroke="#38bdf8" stroke-width="2.5" points="${pts.join(' ')}"/>` + pts.map(p=>{const [cx,cy]=p.split(',');return `<circle cx="${cx}" cy="${cy}" r="3.5" fill="#22c55e"/>`;}).join('');
+}
+async function runAudit(){ await fetch('/api/audit',{method:'POST'}); await loadData(); }
+loadData(); setInterval(loadData, 5000);
+</script>
+</body></html>

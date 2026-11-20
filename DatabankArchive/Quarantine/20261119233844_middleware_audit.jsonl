@@ -1,0 +1,15 @@
+{"ts":"2026-11-19T23:35:16.230Z","reqId":"a56daf78-22a9-4aa6-8d4f-9a82f1a809c3","method":"GET","url":"/api/stream","status":404,"ms":12.92}
+{"ts":"2026-11-19T23:35:18.050Z","reqId":"c907a5ce-f84d-4991-b5c6-aaecc35c3046","method":"POST","url":"/api/remediate","status":200,"ms":3.639}
+{"ts":"2026-11-19T23:35:18.133Z","reqId":"208a78fd-60ad-4969-9e23-8b9a14205375","method":"POST","url":"/api/remediate","status":200,"ms":1.098}
+{"ts":"2026-11-19T23:35:33.093Z","reqId":"b4a37a12-47f1-476b-9846-2d61274750eb","method":"GET","url":"/api/dashboard","status":404,"ms":0.676}
+{"ts":"2026-11-19T23:35:33.097Z","reqId":"b0000e81-ee96-47c7-a631-40b7467d37d0","method":"GET","url":"/api/dashboard","status":404,"ms":0.595}
+{"ts":"2026-11-19T23:36:01.800Z","reqId":"19d950ce-b2e2-4837-9660-90df72a5e79b","method":"POST","url":"/api/remediate","status":200,"ms":13.151}
+{"ts":"2026-11-19T23:36:01.882Z","reqId":"a1d502c7-4740-473f-af4b-dd4f8523bab4","method":"POST","url":"/api/remediate","status":200,"ms":1.304}
+{"ts":"2026-11-19T23:36:33.093Z","reqId":"094a51f9-255a-4ad7-a09a-8efb98081090","method":"GET","url":"/api/dashboard","status":404,"ms":1.673}
+{"ts":"2026-11-19T23:36:33.096Z","reqId":"759a57d4-e4fa-4858-bc21-f83e7f1c0781","method":"GET","url":"/api/dashboard","status":404,"ms":0.958}
+{"ts":"2026-11-19T23:36:45.690Z","reqId":"bfe8ed99-ef53-4e08-b2a8-716cea124322","method":"POST","url":"/api/remediate","status":401,"ms":10.041}
+{"ts":"2026-11-19T23:36:45.726Z","reqId":"6e8d54c7-a40b-49a2-bf55-1d76e3a99f94","method":"POST","url":"/api/remediate","status":200,"ms":2.13}
+{"ts":"2026-11-19T23:37:33.090Z","reqId":"e00da4c5-ecba-46a1-9818-e40eca0086d8","method":"GET","url":"/api/dashboard","status":404,"ms":1.475}
+{"ts":"2026-11-19T23:37:33.092Z","reqId":"a0da133e-ded4-4fa7-b94b-a7bf313ab6fd","method":"GET","url":"/api/dashboard","status":404,"ms":0.55}
+{"ts":"2026-11-19T23:38:33.106Z","reqId":"9b84a552-fab7-4209-a4a4-53f659b7a105","method":"GET","url":"/api/dashboard","status":404,"ms":1.29}
+{"ts":"2026-11-19T23:38:33.108Z","reqId":"156f7d6a-3d4b-4412-b008-988469d40728","method":"GET","url":"/api/dashboard","status":404,"ms":1.089}

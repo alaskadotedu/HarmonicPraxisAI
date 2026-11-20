@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HarmonicPraxisAI v7.0</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+<nav>
+  <div class="brand">HARMONIC PRAXIS AI // ENTERPRISE WEB SUITE v7.0</div>
+  <div class="tabs">
+    <button class="active" data-tab="overview">Overview &amp; Cabinets</button>
+    <button data-tab="telemetry">Telemetry Vault</button>
+    <button data-tab="workbench">Remediation Workbench</button>
+  </div>
+</nav>
+<main>
+  <div class="sse-bar" id="sseBar"><span>SSE STREAM: Connecting...</span></div>
+  <div class="kpi-grid">
+    <div class="card"><div class="lbl">Host Free Memory</div><div class="num" id="kMem">--%</div></div>
+    <div class="card"><div class="lbl">Telemetry Frames (CAB_01)</div><div class="num" id="kTel">0</div></div>
+    <div class="card"><div class="lbl">Sealed Files (CAB_02)</div><div class="num" id="kInt">0</div></div>
+    <div class="card"><div class="lbl">Audit Entries (CAB_04)</div><div class="num" id="kAud">0</div></div>
+  </div>
+  <section id="overview" class="view active">
+    <div class="card" style="margin-bottom:16px"><h3>Cryptographic Repository Integrity (SHA-256)</h3>
+      <table><thead><tr><th>#</th><th>Module Path</th><th>KB</th><th>SHA-256 Prefix</th><th>Phi Weight</th><th>Status</th></tr></thead><tbody id="intBody"></tbody></table>
+    </div>
+    <div class="card"><h3>HTTP Middleware Audit Ledger</h3>
+      <table><thead><tr><th>Method</th><th>Route</th><th>HTTP</th><th>Latency</th><th>UTC</th></tr></thead><tbody id="audBody"></tbody></table>
+    </div>
+  </section>
+  <section id="telemetry" class="view">
+    <div class="card"><h3>Persisted Manifold Telemetry Frames</h3>
+      <table><thead><tr><th>ID</th><th>Source</th><th>Psi</th><th>Freq (THz)</th><th>Reg Bend</th><th>Watermark</th><th>Status</th></tr></thead><tbody id="telBody"></tbody></table>
+    </div>
+  </section>
+  <section id="workbench" class="view">
+    <div class="card"><h3>Authenticated Recursive Ridge Inference</h3>
+      <div class="form-row">
+        <div><label class="lbl">X-API-Key</label><input id="fKey" placeholder="Paste harmonic_api_key.txt"></div>
+        <div><label class="lbl">Psi (rad)</label><input id="fPsi" value="1.25"></div>
+        <div><label class="lbl">Gain</label><input id="fGain" value="0.85"></div>
+        <div><label class="lbl">Purity</label><input id="fPur" value="0.49"></div>
+      </div>
+      <button class="primary" id="btnRun">Run &amp; Persist Frame</button>
+      <pre id="outJson">Awaiting execution...</pre>
+    </div>
+  </section>
+</main>
+<script src="/app.js"></script>
+</body></html>

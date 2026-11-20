@@ -1,0 +1,14 @@
+services:
+  harmonic-praxis-suite:
+    build: .
+    container_name: harmonic_praxis_v6
+    ports:
+      - "8100:8100"
+    environment:
+      - PORT=8100
+      - HARMONIC_API_KEY=${HARMONIC_API_KEY:-hpai_local_container_key}
+    volumes:
+      - harmonic_vault_data:/app/data
+    restart: unless-stopped
+volumes:
+  harmonic_vault_data:

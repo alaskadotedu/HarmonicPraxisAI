@@ -1,0 +1,7 @@
+PRAGMA journal_mode = WAL;
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS cabinet_topology (cabinet_id TEXT PRIMARY KEY, cabinet_name TEXT NOT NULL, tier TEXT NOT NULL, retention TEXT NOT NULL, created_utc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS telemetry_frames (frame_id INTEGER PRIMARY KEY AUTOINCREMENT, cabinet_id TEXT NOT NULL DEFAULT 'CAB_01_TELEMETRY', source_file TEXT NOT NULL, step_seq INTEGER NOT NULL, coupling_gain REAL, frequency_thz REAL, watermark_wt REAL, regulated_bend REAL, breach_detected INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL, ingested_utc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS integrity_registry (artifact_name TEXT PRIMARY KEY, cabinet_id TEXT NOT NULL DEFAULT 'CAB_02_INTEGRITY', sha256_digest TEXT NOT NULL, size_bytes INTEGER NOT NULL, phi_weight REAL NOT NULL, risk_score REAL NOT NULL, remediation_action TEXT NOT NULL, verified_utc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS regression_models (model_id TEXT PRIMARY KEY, cabinet_id TEXT NOT NULL DEFAULT 'CAB_03_MODELS', version TEXT NOT NULL, feature_dim INTEGER NOT NULL, target_dim INTEGER NOT NULL, lambda_reg REAL NOT NULL, weights_json TEXT NOT NULL, x_mean_json TEXT NOT NULL, x_std_json TEXT NOT NULL, registered_utc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS http_audit_ledger (audit_id INTEGER PRIMARY KEY AUTOINCREMENT, cabinet_id TEXT NOT NULL DEFAULT 'CAB_04_AUDIT', req_id TEXT UNIQUE NOT NULL, method TEXT NOT NULL, route TEXT NOT NULL, status_code INTEGER NOT NULL, latency_ms REAL NOT NULL, recorded_utc TEXT NOT NULL);
