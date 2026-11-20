@@ -1,38 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Harmonic Material & CAD/GDSII Synthesis Studio v8.5</title>
+  <title>Harmonic Material & Wafer GDSII Synthesis Studio v9.0</title>
   <style>
     * { box-sizing: border-box; }
     body { background:#05080f; color:#e2e8f0; font-family:Consolas,monospace; margin:0; padding:14px; }
     .bar { display:flex; justify-content:space-between; align-items:center; background:#0f172a; border:1px solid #1e293b; padding:10px 16px; margin-bottom:10px; }
     h1 { color:#38bdf8; font-size:15px; margin:0; }
-    $11.3fr repeat(4,1fr) auto auto auto auto; gap:8px; background:#0f172a; border:1px solid #1e293b; padding:10px 14px; margin-bottom:10px; align-items:center; }
     .custom-bar { display:grid; grid-template-columns:1.4fr repeat(5,0.8fr) auto; gap:8px; background:#0b1220; border:1px solid #1e293b; padding:10px 14px; margin-bottom:10px; align-items:end; }
+    .controls { display:grid; grid-template-columns:1.25fr repeat(4,0.9fr) 0.55fr 0.55fr auto auto auto auto; gap:8px; background:#0f172a; border:1px solid #1e293b; padding:10px 14px; margin-bottom:10px; align-items:end; }
     label { display:block; font-size:10.5px; color:#94a3b8; }
     select, input[type=range], input[type=text], input[type=number] { width:100%; margin-top:4px; background:#05080f; color:#e2e8f0; border:1px solid #334155; padding:5px; font-family:Consolas,monospace; font-size:11px; }
-    button { background:#0284c7; color:#fff; border:none; padding:8px 11px; font-family:Consolas,monospace; font-weight:bold; cursor:pointer; font-size:11px; }
-    button.alt { background:#059669; }
-    button.cad { background:#7c3aed; }
+    button { background:#0284c7; color:#fff; border:none; padding:8px 10px; font-family:Consolas,monospace; font-weight:bold; cursor:pointer; font-size:11px; }
+    button.alt { background:#059669; } button.cad { background:#7c3aed; } button.gds { background:#d97706; } button.snap { background:#0d9488; }
     .grid-3 { display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:10px; }
     .card { background:#0f172a; border:1px solid #1e293b; padding:12px; }
     .title { color:#38bdf8; font-size:11.5px; font-weight:bold; margin-bottom:8px; border-bottom:1px solid #1e293b; padding-bottom:4px; }
     .kv { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed #1e293b; font-size:11.5px; }
-    canvas { width:100%; height:290px; background:#05080f; border:1px solid #1e293b; display:block; }
-    pre { background:#05080f; border:1px solid #1e293b; padding:8px; font-size:10.5px; color:#7dd3fc; max-height:290px; overflow:auto; margin:0; }
+    canvas { width:100%; height:300px; background:#05080f; border:1px solid #1e293b; display:block; }
+    pre { background:#05080f; border:1px solid #1e293b; padding:8px; font-size:10.5px; color:#7dd3fc; max-height:300px; overflow:auto; margin:0; }
     .ok { color:#22c55e; font-weight:bold; }
   </style>
 </head>
 <body>
   <div class="bar">
     <div>
-      <h1>HARMONIC MATERIAL &amp; CAD/GDSII SYNTHESIS STUDIO v8.5</h1>
+      <h1>HARMONIC MATERIAL &amp; WAFER GDSII SYNTHESIS STUDIO v9.0</h1>
       <div style="font-size:11px;color:#94a3b8;margin-top:3px">SHA-256: <span id="sha" class="ok">--</span> | CLASS: <span id="mClass" class="ok">--</span></div>
     </div>
     <div id="status" class="ok" style="font-size:12px">READY</div>
   </div>
-
   <div class="custom-bar">
     <label>NEW PROFILE NAME<input id="cName" type="text" placeholder="e.g. GRAPHENE_BILAYER_6" /></label>
     <label>N-GON SIDES<input id="cSides" type="number" min="3" max="32" value="6" /></label>
@@ -42,7 +40,6 @@
     <label>PITCH (nm)<input id="cLat" type="number" step="10" value="460" /></label>
     <button id="btnAddProf" class="alt">+ REGISTER PROFILE</button>
   </div>
-
   <div class="controls">
     <label>ACTIVE MATERIAL PROFILE
       <select id="prof">
@@ -56,11 +53,13 @@
     <label>GAIN: <span id="lGain">0.72</span><input id="gain" type="range" min="0.05" max="1.00" step="0.01" value="0.72" /></label>
     <label>PURITY: <span id="lPur">0.88</span><input id="purity" type="range" min="0.10" max="1.00" step="0.01" value="0.88" /></label>
     <label>ALPHA: <span id="lAlp">0.50</span><input id="alpha" type="range" min="0.00" max="1.00" step="0.01" value="0.50" /></label>
+    <label>WAFER ROWS<input id="gRows" type="number" min="1" max="32" value="4" /></label>
+    <label>WAFER COLS<input id="gCols" type="number" min="1" max="32" value="4" /></label>
     <button id="btnSolve" class="alt">SOLVE</button>
-    <button id="btnCad" class="cad">EXPORT GDSII/CIF</button><button id="btnDownloadGds" style="background:#d97706">DOWNLOAD .GDS</button>
-    <button id="btnSave">VAULT</button>
+    <button id="btnCad" class="cad">EXPORT GDSII</button>
+    <button id="btnDownloadGds" class="gds">DOWNLOAD .GDS</button>
+    <button id="btnSnapshot" class="snap">SNAPSHOT</button>
   </div>
-
   <div class="grid-3">
     <div class="card">
       <div class="title">[CONSTITUTIVE TENSOR &amp; MASS INVARIANT]</div>
@@ -75,42 +74,46 @@
       <div class="kv"><span>REGULATED BEND:</span><span id="vBend">--</span></div>
     </div>
     <div class="card">
-      <div class="title">[CAD/GDSII 4x4 UNIT-CELL LATTICE PREVIEW]</div>
-      <canvas id="cadCanvas" width="460" height="290"></canvas>
+      <div class="title">[4-LAYER WAFER GRID PREVIEW (<span id="gridLbl">4x4</span>)]</div>
+      <canvas id="cadCanvas" width="460" height="300"></canvas>
     </div>
     <div class="card">
       <div class="title">[GDSII STREAM / CIF &amp; TELEMETRY OUTPUT]</div>
       <pre id="raw">{}</pre>
     </div>
   </div>
-
   <script>
-    const els = ['prof','psi','gain','purity','alpha'].reduce((a,id)=>(a[id]=document.getElementById(id),a),{});
+    const els = ['prof','psi','gain','purity','alpha','gRows','gCols'].reduce((a,id)=>(a[id]=document.getElementById(id),a),{});
     const ctx = document.getElementById('cadCanvas').getContext('2d');
-
     function populateCatalog(keys, active) {
       if (!keys || !keys.length) return;
-      const sel = els.prof;
-      const cur = active || sel.value;
-      sel.innerHTML = keys.map(k => `<option value="${k}">${k}</option>`).join('');
+      const sel = els.prof, cur = active || sel.value;
+      sel.innerHTML = keys.map(k => '<option value="' + k + '">' + k + '</option>').join('');
       if (keys.includes(cur)) sel.value = cur;
     }
-
-        function drawLattice(cad) {
-      ctx.clearRect(0, 0, 460, 290);
-      if (!cad || !cad.structures) return;
-      const scale = 0.11, ox = 85, oy = 65;
+    function drawLattice(cad) {
+      ctx.clearRect(0, 0, 460, 300);
+      if (!cad || !cad.structures || !cad.structures.length) return;
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      cad.structures.forEach(cell => {
+        cell.vertices_nm.forEach(pt => {
+          if (pt.x_nm < minX) minX = pt.x_nm; if (pt.x_nm > maxX) maxX = pt.x_nm;
+          if (pt.y_nm < minY) minY = pt.y_nm; if (pt.y_nm > maxY) maxY = pt.y_nm;
+        });
+      });
+      const pad = 22, spanX = Math.max(1, maxX - minX), spanY = Math.max(1, maxY - minY);
+      const scale = Math.min((460 - pad * 2) / spanX, (275 - pad * 2) / spanY);
+      const ox = pad + ((460 - pad * 2) - spanX * scale) / 2 - minX * scale;
+      const oy = pad + ((275 - pad * 2) - spanY * scale) / 2 - minY * scale;
       const layerPalette = {
         1:  { stroke: '#475569', fill: 'rgba(71,85,105,0.12)',  width: 1.0 },
-        10: { stroke: '#38bdf8', fill: 'rgba(56,189,248,0.22)', width: 1.5 },
-        15: { stroke: '#22c55e', fill: 'rgba(34,197,94,0.10)',  width: 1.2 },
-        20: { stroke: '#a855f7', fill: 'rgba(168,85,247,0.08)', width: 1.0 }
+        10: { stroke: '#38bdf8', fill: 'rgba(56,189,248,0.22)', width: 1.3 },
+        15: { stroke: '#22c55e', fill: 'rgba(34,197,94,0.10)',  width: 1.0 },
+        20: { stroke: '#a855f7', fill: 'rgba(168,85,247,0.08)', width: 0.9 }
       };
       cad.structures.forEach(cell => {
-        const style = layerPalette[cell.gds_layer] || layerPalette;
-        ctx.strokeStyle = style.stroke;
-        ctx.fillStyle = style.fill;
-        ctx.lineWidth = style.width;
+        const style = layerPalette[cell.gds_layer] || layerPalette[10];
+        ctx.strokeStyle = style.stroke; ctx.fillStyle = style.fill; ctx.lineWidth = style.width;
         ctx.beginPath();
         cell.vertices_nm.forEach((pt, idx) => {
           const px = ox + pt.x_nm * scale, py = oy + pt.y_nm * scale;
@@ -118,62 +121,55 @@
         });
         ctx.closePath(); ctx.fill(); ctx.stroke();
       });
+      const dims = cad.grid_dimensions ||;
+      document.getElementById('gridLbl').textContent = dims[0] + 'x' + dims[1];
       ctx.fillStyle = '#94a3b8'; ctx.font = '10px Consolas';
-      ctx.fillText('L1:SUBSTRATE | L10:CORE | L15:RING | L20:CLADDING (' + cad.total_polygons + ' POLYS)', 10, 282);
+      ctx.fillText('L1:SUB | L10:CORE | L15:RING | L20:CLAD (' + cad.total_polygons + ' POLYS | ' + dims[0] + 'x' + dims[1] + ')', 10, 290);
     }
-
     async function sync(solve=false, persist=false, exportCad=false) {
       document.getElementById('lPsi').textContent = Number(els.psi.value).toFixed(2);
       document.getElementById('lGain').textContent = Number(els.gain.value).toFixed(2);
       document.getElementById('lPur').textContent = Number(els.purity.value).toFixed(2);
       document.getElementById('lAlp').textContent = Number(els.alpha.value).toFixed(2);
-
-      const q = new URLSearchParams({
-        profile: els.prof.value, psi: els.psi.value, gain: els.gain.value,
-        purity: els.purity.value, alpha: els.alpha.value,
-        solve: solve?'1':'0', persist: persist?'1':'0', cad: exportCad?'1':'0'
-      });
+      const rows = Math.max(1, Math.min(32, parseInt(els.gRows.value || '4', 10)));
+      const cols = Math.max(1, Math.min(32, parseInt(els.gCols.value || '4', 10)));
+      document.getElementById('gridLbl').textContent = rows + 'x' + cols;
+      const q = new URLSearchParams({ profile: els.prof.value, psi: els.psi.value, gain: els.gain.value, purity: els.purity.value, alpha: els.alpha.value, rows: rows, cols: cols, solve: solve?'1':'0', persist: persist?'1':'0', cad: exportCad?'1':'0' });
       const res = await (await fetch('/api/material?' + q.toString())).json();
       const d = res.material, c = d.ConstitutiveTensor, j = d.JacobianCore;
-
       populateCatalog(d.CatalogProfiles, d.MaterialProfile);
-      document.getElementById('sha').textContent = j.StateHash16;
-      document.getElementById('mClass').textContent = c.MetamaterialClass;
-      document.getElementById('status').textContent = exportCad ? 'GDSII/CIF EXPORTED' : (persist ? 'VAULT COMMITTED' : j.Status);
-      document.getElementById('vLat').textContent = d.LatticeConstantNm + ' nm';
-      document.getElementById('vEps').textContent = c.PermittivityEff;
-      document.getElementById('vMu').textContent = c.PermeabilityEff;
-      document.getElementById('vIdx').textContent = c.RefractiveIndex;
-      document.getElementById('vBg').textContent = c.PhotonicBandgapThz + ' THz';
-      document.getElementById('vQ').textContent = c.ResonanceQFactor;
-      document.getElementById('vMass').textContent = j.MassAugmentation.ColdMass + ' < ' + j.MassAugmentation.LowMass;
-      document.getElementById('vRho').textContent = j.JacobianTensor.SpectralRadius;
-      document.getElementById('vBend').textContent = j.ObservableY.RegulatedBend;
-
-      if (res.cadPreview) drawLattice(res.cadPreview);
-      document.getElementById('raw').textContent = exportCad && res.cad ? res.cad.CifPreview : JSON.stringify(d, null, 2);
-    }
-
-    document.getElementById('btnAddProf').addEventListener('click', async () => {
-      const q = new URLSearchParams({
-        name: document.getElementById('cName').value || 'CUSTOM_LATTICE',
-        sides: document.getElementById('cSides').value,
-        eps: document.getElementById('cEps').value,
-        mu: document.getElementById('cMu').value,
-        damp: document.getElementById('cDamp').value,
-        lat: document.getElementById('cLat').value
-      });
-      const reg = await (await fetch('/api/profile/create?' + q.toString())).json();
+document.getElementById('sha').textContent = j.StateHash16;
+document.getElementById('mClass').textContent = c.MetamaterialClass;
+document.getElementById('status').textContent = exportCad ? ('GDSII ' + rows + 'x' + cols + ' EXPORTED') : (persist ? 'VAULT COMMITTED' : j.Status);
+document.getElementById('vLat').textContent = d.LatticeConstantNm + ' nm';
+document.getElementById('vEps').textContent = c.PermittivityEff;
+document.getElementById('vMu').textContent = c.PermeabilityEff;
+document.getElementById('vIdx').textContent = c.RefractiveIndex;
+document.getElementById('vBg').textContent = c.PhotonicBandgapThz + ' THz';
+document.getElementById('vQ').textContent = c.ResonanceQFactor;
+document.getElementById('vMass').textContent = j.MassAugmentation.ColdMass + ' < ' + j.MassAugmentation.LowMass;
+document.getElementById('vRho').textContent = j.JacobianTensor.SpectralRadius;
+document.getElementById('vBend').textContent = j.ObservableY.RegulatedBend;
+if (res.cadPreview) drawLattice(res.cadPreview);
+document.getElementById('raw').textContent = exportCad && res.cad ? res.cad.CifPreview : JSON.stringify(d, null, 2);
+}
+document.getElementById('btnAddProf').addEventListener('click', async () => {
+const q = new URLSearchParams({ name: document.getElementById('cName').value || 'CUSTOM_LATTICE', sides: document.getElementById('cSides').value, eps: document.getElementById('cEps').value, mu: document.getElementById('cMu').value, damp: document.getElementById('cDamp').value, lat: document.getElementById('cLat').value });
+const reg = await (await fetch('/api/profile/create?' + q.toString())).json();
 populateCatalog(reg.CatalogKeys, reg.ProfileName);
-sync(false, false, false);
+sync(false, false, true);
 });
-Object.values(els).forEach(el => el.addEventListener('input', () => sync(false, false, false)));
+['prof','psi','gain','purity','alpha'].forEach(id => els[id].addEventListener('input', () => sync(false, false, false)));
+['gRows','gCols'].forEach(id => els[id].addEventListener('change', () => sync(false, false, true)));
 document.getElementById('btnSolve').addEventListener('click', () => sync(true, false, false));
 document.getElementById('btnCad').addEventListener('click', () => sync(false, false, true));
-document.getElementById('btnSave').addEventListener('click', () => sync(false, true, false));
-sync(false, false, false);
-
-
-
+document.getElementById('btnDownloadGds').addEventListener('click', async () => { await sync(false, false, true); window.location.href = '/download/gds'; });
+document.getElementById('btnSnapshot').addEventListener('click', async () => {
+const st = document.getElementById('status'); st.textContent = 'ARCHIVING SHA-256...';
+const r = await (await fetch('/api/snapshot')).json();
+st.textContent = 'SNAPSHOT OK (' + r.FileCount + ' FILES)';
+document.getElementById('raw').textContent = JSON.stringify(r, null, 2);
+});
+sync(false, false, true);
 
 

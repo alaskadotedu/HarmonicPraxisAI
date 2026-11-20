@@ -3,3 +3,4 @@
 HyperV_VM/
 *.vhdx
 *.iso
+Snapshots/*.zip

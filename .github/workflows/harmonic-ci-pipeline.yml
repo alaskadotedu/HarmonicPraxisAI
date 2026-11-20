@@ -1,0 +1,48 @@
+name: Harmonic Praxis CI & GDSII Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  verify-jacobian-and-gdsii:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Execute Multi-Profile Equilibrium & GDSII Compilation
+        shell: pwsh
+        run: |
+          . ./HarmonicMaterialApplicationEngine.ps1
+          $profiles = @('PHOTONIC_CRYSTAL_HEX', 'SUPERCONDUCTING_METAMATERIAL', 'TOPO_INSULATOR_OCT', 'QUASICRYSTAL_PHI_12')
+          foreach ($p in $profiles) {
+            $res = Invoke-MaterialSynthesis -Profile $p -SolveEquilibrium
+            if ($res.JacobianCore.BreachDetected) { throw "Stability breach on $p" }
+          }
+          $cad = Export-CadGdsiiLattice -MaterialState (Invoke-MaterialSynthesis -Profile 'PHOTONIC_CRYSTAL_HEX' -SolveEquilibrium) -Rows 4 -Cols 4
+          if (-not (Test-Path './lattice_layout.gds')) { throw "Binary GDSII stream missing" }
+          Write-Host "CI VERIFIED: $($cad.BinaryStats)"
+
+      - name: Generate SHA-256 Workspace Snapshot
+        shell: pwsh
+        run: |
+          ./Export-WorkspaceSnapshot.ps1
+
+      - name: Upload GDSII & Snapshot Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmonic-praxis-build-artifacts
+          path: |
+            lattice_layout.gds
+            lattice_layout.cif
+            cad_gdsii_lattice.json
+            Snapshots/*.zip
