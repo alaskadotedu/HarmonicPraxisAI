@@ -31,8 +31,8 @@ $wsFiles = Get-ChildItem -LiteralPath $RootDir -File -Recurse |
 
 $sb = [System.Text.StringBuilder]::new()
 foreach ($f in $wsFiles) {
-    $rel = $f.FullName.Substring($RootDir.Length).TrimStart('\')
-    $h   = (Get-FileHash -LiteralPath $f.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+    $rel  = $f.FullName.Substring($RootDir.Length).TrimStart('\')
+    $h    = (Get-FileHash -LiteralPath $f.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     $null = $sb.Append("$rel`:$h`n")
 }
 $merkleRoot = Get-Sha256Hex ($sb.ToString())
@@ -47,17 +47,18 @@ if (Test-Path -LiteralPath $surrPath) {
 }
 
 foreach ($nSides in $PolygonLatticeSpectrum) {
-    $jac = Invoke-JacobianEngine -Psi 0.523599 -Gain 0.72 -Purity 0.88 -Alpha 0.50 -Sides $nSides -SolveEquilibrium -TargetBend 8.0 -ModelObj $modelObj -SurrHash $surrHash
+    $psiSector = (2.0 * [math]::PI) / $nSides
+    $jac = Invoke-JacobianEngine -Psi $psiSector -Gain 0.68 -Purity 0.92 -Alpha 0.50 -Sides $nSides -SolveEquilibrium -TargetBend 4.5 -ModelObj $modelObj -SurrHash $surrHash
     $perennialValid = ($jac.MassAugmentation.InvariantSatisfied -and (-not $jac.JacobianTensor.Singular) -and (-not $jac.BreachDetected))
     $matriculatedCells.Add([pscustomobject]@{
-        quantizer_n      = $nSides
-        sector_rad       = $jac.Polygonal.SectorAngleRad
-        coherence        = $jac.Polygonal.Coherence
-        spectral_radius  = $jac.JacobianTensor.SpectralRadius
-        regulated_bend   = $jac.ObservableY.RegulatedBend
-        mass_invariant   = $jac.MassAugmentation.InvariantSatisfied
-        perennial_valid  = $perennialValid
-        state_hash16     = $jac.StateHash16
+        quantizer_n     = $nSides
+        sector_rad      = $jac.Polygonal.SectorAngleRad
+        coherence       = $jac.Polygonal.Coherence
+        spectral_radius = $jac.JacobianTensor.SpectralRadius
+        regulated_bend  = $jac.ObservableY.RegulatedBend
+        mass_invariant  = $jac.MassAugmentation.InvariantSatisfied
+        perennial_valid = $perennialValid
+        state_hash16    = $jac.StateHash16
     })
 }
 
