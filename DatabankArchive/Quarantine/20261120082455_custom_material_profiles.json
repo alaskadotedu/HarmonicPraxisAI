@@ -1,0 +1,44 @@
+{
+  "PHOTONIC_CRYSTAL_HEX": {
+    "Sides": 6,
+    "BaseEps": 11.68,
+    "BaseMu": 1.0,
+    "ThermalDamp": 0.86,
+    "LatticeNm": 420.0
+  },
+  "SUPERCONDUCTING_METAMATERIAL": {
+    "Sides": 4,
+    "BaseEps": -2.4,
+    "BaseMu": 0.35,
+    "ThermalDamp": 0.96,
+    "LatticeNm": 280.0
+  },
+  "TOPO_INSULATOR_OCT": {
+    "Sides": 8,
+    "BaseEps": 16.2,
+    "BaseMu": 1.12,
+    "ThermalDamp": 0.91,
+    "LatticeNm": 510.0
+  },
+  "QUASICRYSTAL_PHI_12": {
+    "Sides": 12,
+    "BaseEps": 7.85,
+    "BaseMu": 0.94,
+    "ThermalDamp": 0.94,
+    "LatticeNm": 618.0
+  },
+  "GRAPHENE_BILAYER_MOIRE_6": {
+    "Sides": 6,
+    "BaseEps": 6.9,
+    "BaseMu": 1.02,
+    "ThermalDamp": 0.95,
+    "LatticeNm": 310.0
+  },
+  "THZ_SPLIT_RING_RESONATOR_4": {
+    "Sides": 4,
+    "BaseEps": -4.15,
+    "BaseMu": 0.28,
+    "ThermalDamp": 0.93,
+    "LatticeNm": 240.0
+  }
+}

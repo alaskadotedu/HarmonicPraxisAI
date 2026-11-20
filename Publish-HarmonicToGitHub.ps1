@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$RepoName = "HarmonicPraxisAI",
     [ValidateSet("private", "public")]
     [string]$Visibility = "private",
@@ -40,7 +40,7 @@ if ($PushRemote) {
         $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
     }
 
-    $authCheck = & gh auth status 2>&1
+    $prev = $ErrorActionPreference; $ErrorActionPreference = "Continue"; $authCheck = & gh auth status 2>&1; $ErrorActionPreference = $prev
     if ($LASTEXITCODE -ne 0) {
         Write-Host "[AUTH REQUIRED] Launching GitHub CLI login..." -ForegroundColor Yellow
         gh auth login --web --git-protocol https
