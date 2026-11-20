@@ -1,11 +1,11 @@
 {
-    "TimestampUtc":  "2026-11-20T07:47:39.9580315Z",
-    "Issuer":  "https://urs.earthdata.nasa.gov",
-    "SubjectUid":  "anotherusername415",
-    "IdentityProv":  "edl_ops",
-    "AssuranceLevel":  3,
-    "ExpiresUtc":  "2026-11-20T18:32:46.0000000Z",
-    "TokenValid":  true,
-    "TransitStatus":  "FEDERATED_BEARER_AUTHORIZED",
-    "HttpStatus":  200
+  "TimestampUtc": "2026-11-20T07:50:36.1376059Z",
+  "Issuer": "https://urs.earthdata.nasa.gov",
+  "SubjectUid": "anotherusername415",
+  "IdentityProv": "edl_ops",
+  "AssuranceLevel": 3,
+  "ExpiresUtc": "2026-11-20T18:32:46.0000000Z",
+  "TokenValid": true,
+  "TransitStatus": "FEDERATED_BEARER_AUTHORIZED",
+  "HttpStatus": 200
 }
