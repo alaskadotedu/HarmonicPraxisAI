@@ -1,0 +1,16 @@
+{
+    "GeneratedUtc":  "2026-11-19T23:58:12.7313542Z",
+    "VisualizationDependencies":  {
+                                      "BrowserOverlay":  "HTML5 SVG + Server-Sent Events (/api/stream)",
+                                      "OutputRasterFile":  "C:\\Users\\dmjal\\HarmonicPraxisAI\\harmonic_manifold_raster_v6.png",
+                                      "NativeRasterizer":  ".NET System.Drawing.Common (1600x900 PNG)"
+                                  },
+    "VirtualizationDependencies":  {
+                                       "ContainerEngine":  "Docker / OCI (node:22-alpine with built-in node:sqlite)",
+                                       "Orchestration":  "docker-compose.yml (persistent named volume harmonic_vault_data)",
+                                       "HostRuntime":  {
+                                                           "PowerShell":  "5.1.26100.7019",
+                                                           "NodeJs":  "v26.13.1"
+                                                       }
+                                   }
+}

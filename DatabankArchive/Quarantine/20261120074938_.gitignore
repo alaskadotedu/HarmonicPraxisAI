@@ -1,0 +1,9 @@
+*.db-wal
+*.db-shm
+HyperV_VM/
+*.vhdx
+*.iso
+Snapshots/*.zip
+*.dpapi
+*.env
+edl_transit_receipt.json

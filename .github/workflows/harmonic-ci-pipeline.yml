@@ -46,3 +46,31 @@ jobs:
             lattice_layout.cif
             cad_gdsii_lattice.json
             Snapshots/*.zip
+
+  verify-edl-federated-transit:
+    runs-on: windows-latest
+    needs: verify-jacobian-and-gdsii
+    if: ${{ github.event_name != 'pull_request' }}
+    env:
+      EDL_JWT: ${{ secrets.EDL_BEARER_TOKEN }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Seal & Verify Federated EDL Bearer Transit
+        shell: pwsh
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:EDL_JWT)) {
+            Write-Warning "EDL_BEARER_TOKEN secret is not configured in GitHub Actions; skipping live federated probe."
+            exit 0
+          }
+          $receipt = (& ./Invoke-EdlTokenizedTransit.ps1 -RawJwt $env:EDL_JWT) | ConvertFrom-Json
+          if (-not $receipt.TokenValid) { throw "EDL Bearer JWT failed expiration or signature validation." }
+          Write-Host "EDL TRANSIT VERIFIED | UID: $($receipt.SubjectUid) | STATUS: $($receipt.TransitStatus)"
+
+      - name: Upload Sanitized EDL Transit Receipt
+        if: always() && hashFiles('edl_transit_receipt.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: edl-federated-transit-receipt
+          path: edl_transit_receipt.json
