@@ -1,15 +1,32 @@
+*.db
 *.db-wal
 *.db-shm
+*.db-*
+*.dpapi
+*.env
+*.env.*
+.env
 HyperV_VM/
 *.vhdx
 *.iso
-Snapshots/*.zip
+Snapshots/
 DatabankArchive/
-**/*.dpapi
-*.dpapi
-*.env
-edl_transit_receipt.json
 github-profile-repo/
+
 # Never commit credentials or local secret material.
 harmonic_api_key.txt
-*.env.*
+*_key.txt
+*api_key*
+edl_token.dpapi
+edl_transit_receipt.json
+
+# Local audit/continuity data may contain sensitive operational or personal data.
+middleware_audit.jsonl
+perennial_continuity_ledger.json
+
+# Ignore known accidentally-created command-fragment filenames at repository root.
+/rvCode = @'
+/t.files) {
+/olutePath
+/ersdmjalHarmonicPraxisAI*
+/tZip = Get-ChildItem*
