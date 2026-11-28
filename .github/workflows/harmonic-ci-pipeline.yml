@@ -19,16 +19,19 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Execute Multi-Profile Equilibrium & GDSII Compilation
+      - name: Auto-correct material profiles and compile GDSII
         shell: pwsh
         run: |
           . ./HarmonicMaterialApplicationEngine.ps1
+          . ./Invoke-MaterialSynthesisAutoCorrect.ps1
           $profiles = @('PHOTONIC_CRYSTAL_HEX', 'SUPERCONDUCTING_METAMATERIAL', 'TOPO_INSULATOR_OCT', 'QUASICRYSTAL_PHI_12')
+          $materials = @{}
           foreach ($p in $profiles) {
-            $res = Invoke-MaterialSynthesis -Profile $p -SolveEquilibrium
-            if ($res.JacobianCore.BreachDetected) { throw "Stability breach on $p" }
+            $res = Invoke-MaterialSynthesisAutoCorrect -Profile $p -TargetBend 8.0 -Tolerance 0.05
+            if ($res.JacobianCore.BreachDetected) { throw "Stability breach remains after auto-correction on $p" }
+            $materials[$p] = $res
           }
-          $cad = Export-CadGdsiiLattice -MaterialState (Invoke-MaterialSynthesis -Profile 'PHOTONIC_CRYSTAL_HEX' -SolveEquilibrium) -Rows 4 -Cols 4
+          $cad = Export-CadGdsiiLattice -MaterialState $materials['PHOTONIC_CRYSTAL_HEX'] -Rows 4 -Cols 4
           if (-not (Test-Path './lattice_layout.gds')) { throw "Binary GDSII stream missing" }
           Write-Host "CI VERIFIED: $($cad.BinaryStats)"
 
