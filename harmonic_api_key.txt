@@ -1,1 +1,3 @@
-hpai_663ab51eac38032456e947392d1a84a9a916f9699144132d
+# Remove the exposed value from the working tree. Revoke/rotate it at its issuing service;
+# deleting it here does not remove copies from earlier Git history.
+REDACTED — rotate this credential if it was ever valid.

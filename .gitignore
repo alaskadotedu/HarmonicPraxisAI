@@ -10,3 +10,6 @@ DatabankArchive/
 *.env
 edl_transit_receipt.json
 github-profile-repo/
+# Never commit credentials or local secret material.
+harmonic_api_key.txt
+*.env.*
