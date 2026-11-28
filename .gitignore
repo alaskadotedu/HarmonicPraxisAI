@@ -1,15 +1,38 @@
+# Local secrets and machine-specific credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.dpapi
+edl_token.dpapi
+harmonic_api_key.txt
+
+# Runtime databases and logs
+*.db
 *.db-wal
 *.db-shm
-HyperV_VM/
-*.vhdx
-*.iso
+*.sqlite
+*.sqlite3
+*.jsonl
+
+# Generated CAD and workspace artifacts
+*.gds
+*.cif
+workspace_index_tree.json
+
+# Generated telemetry/output datasets (keep curated fixtures under data/ tracked)
+/universal_5d_manifold_500.csv
+/live_remediation_stream.csv
+/regenerated_recursive_telemetry_v5_1.csv
+
+# Local archives, environments, and OS/editor files
 Snapshots/*.zip
-DatabankArchive/
-**/*.dpapi
-*.dpapi
-*.env
-edl_transit_receipt.json
-github-profile-repo/
-# Never commit credentials or local secret material.
-harmonic_api_key.txt
-*.env.*
+.venv/
+venv/
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db
