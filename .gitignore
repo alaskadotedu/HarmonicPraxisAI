@@ -1,11 +1,11 @@
 *.db
 *.db-wal
 *.db-shm
-*.db-*
+*.db-* 
 *.sqlite
-*.sqlite-*
+*.sqlite-* 
 *.sqlite3
-*.sqlite3-*
+*.sqlite3-* 
 *.dpapi
 *.env
 *.env.*
@@ -16,28 +16,18 @@ HyperV_VM/
 Snapshots/
 DatabankArchive/
 github-profile-repo/
-
-# Never commit credentials or local secret material.
 harmonic_api_key.txt
 *_key.txt
 *api_key*
 edl_token.dpapi
 edl_transit_receipt.json
-
-# MCP configuration can contain tokens or private endpoint credentials.
 **/mcp.json
-
-# Local audit/continuity data may contain sensitive operational or personal data.
 middleware_audit.jsonl
 perennial_continuity_ledger.json
-
-# Ignore known accidentally-created command-fragment filenames at repository root.
 /rvCode = @'
 /t.files) {
 /olutePath
 /ersdmjalHarmonicPraxisAI*
 /tZip = Get-ChildItem*
-
-# Avoid re-adding malformed filenames with corrupted path punctuation.
 /**
 /**
